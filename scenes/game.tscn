@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3fedxgimekyw"]
+[gd_scene load_steps=11 format=3 uid="uid://d3fedxgimekyw"]
 
+[ext_resource type="VideoStream" path="res://videos/level2.ogv" id="1_muj5m"]
 [ext_resource type="PackedScene" uid="uid://kmvnluuts8gi" path="res://scenes/player.tscn" id="1_xawuv"]
 [ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="2_b5srl"]
 [ext_resource type="Texture2D" uid="uid://27ptw6te2tfl" path="res://assets/sprites/world_tileset.png" id="2_p7qys"]
 [ext_resource type="PackedScene" uid="uid://b855ox3u8upna" path="res://scenes/area_2d.tscn" id="3_s616a"]
 [ext_resource type="PackedScene" uid="uid://uf3ji17l0q12" path="res://scenes/killzone.tscn" id="4_01d4u"]
+[ext_resource type="AudioStream" uid="uid://cyxwdsej6dg42" path="res://sounds/coin.wav" id="5_cnqyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejwgg"]
 texture = ExtResource("2_p7qys")
@@ -225,17 +227,34 @@ layer_0/tile_data = PackedInt32Array(262145, 0, 0, 262146, 0, 0, 262149, 0, 0, 2
 [node name="Area2D" parent="." instance=ExtResource("3_s616a")]
 position = Vector2(79, 40)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D"]
+stream = ExtResource("5_cnqyk")
+bus = &"SFX"
+
 [node name="Area2D2" parent="." instance=ExtResource("3_s616a")]
 position = Vector2(192, 73)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D2"]
+stream = ExtResource("5_cnqyk")
 
 [node name="Area2D3" parent="." instance=ExtResource("3_s616a")]
 position = Vector2(336, 87)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D3"]
+stream = ExtResource("5_cnqyk")
+
 [node name="Area2D4" parent="." instance=ExtResource("3_s616a")]
 position = Vector2(398, 120)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D4"]
+stream = ExtResource("5_cnqyk")
+
 [node name="Area2D5" parent="." instance=ExtResource("3_s616a")]
 position = Vector2(463, 151)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D5"]
+stream = ExtResource("5_cnqyk")
+bus = &"SFX"
 
 [node name="Killzone" parent="." instance=ExtResource("4_01d4u")]
 position = Vector2(-3, 210)
@@ -257,6 +276,19 @@ Press Space to Jump
 Press Esc to pause
 Press R to resume
 Collect All the Coins!"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+visible = false
+offset_left = -189.0
+offset_top = -72.0
+offset_right = -149.0
+offset_bottom = -32.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+stream = ExtResource("1_muj5m")
+expand = true
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="Player" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/QuitButton" to="Player" method="_on_quit_button_pressed"]
