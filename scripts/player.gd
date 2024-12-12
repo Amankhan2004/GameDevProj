@@ -4,7 +4,7 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
 var coin_count = 0
-var target_coin_count = 5  # Number of coins needed for the "next level" message
+var target_coin_count = 42  # Number of coins needed for the "next level" message
 
 func _physics_process(delta: float) -> void:
 	# Basic physics for gravity and movement
